@@ -1,0 +1,32 @@
+{
+  "name": "@alien-shooter-web/client",
+  "version": "1.0.0",
+  "description": "Phaser 3 browser client for Alien Shooter Web",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "phaser",
+    "game",
+    "client"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@alien-shooter-web/shared": "file:../shared",
+    "phaser": "^3.70.0",
+    "socket.io-client": "^4.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "copy-webpack-plugin": "^12.0.2",
+    "html-webpack-plugin": "^5.6.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

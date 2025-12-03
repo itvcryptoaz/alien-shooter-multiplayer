@@ -1,0 +1,22 @@
+{
+  "name": "@alien-shooter-web/shared",
+  "version": "1.0.0",
+  "description": "Shared protocol definitions and utilities for Alien Shooter Web",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "protocol",
+    "networking",
+    "shared"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alien Shooter Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        #game-container {
+            position: relative;
+        }
+        
+        #connection-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            color: #00ff00;
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        #connection-panel h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        #connection-panel input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        
+        #connection-panel button {
+            width: 100%;
+            padding: 10px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        #connection-panel button:hover {
+            background: #00cc00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        
+        #connection-panel button:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+        
+        #status-message {
+            margin-top: 15px;
+            font-size: 14px;
+            min-height: 20px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="connection-panel">
+            <h1>ALIEN SHOOTER</h1>
+            <input type="text" id="player-name" placeholder="Enter your name" maxlength="15" />
+            <input type="text" id="server-url" placeholder="Server URL" value="http://localhost:3000" />
+            <button id="connect-button">CONNECT</button>
+            <div id="status-message"></div>
+        </div>
+    </div>
+</body>
+</html>

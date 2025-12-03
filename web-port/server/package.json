@@ -1,0 +1,28 @@
+{
+  "name": "@alien-shooter-web/server",
+  "version": "1.0.0",
+  "description": "Node.js multiplayer server for Alien Shooter Web",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "server",
+    "multiplayer",
+    "socket.io"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@alien-shooter-web/shared": "file:../shared",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
