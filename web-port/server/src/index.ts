@@ -23,6 +23,7 @@ import {
   MP_ACTOR_SYNC_UPDATE_RATE_MS,
   MP_USER_SYNC_UPDATE_RATE_MS,
 } from '@alien-shooter-web/shared';
+import { logger } from './utils/logger';
 
 const PORT = process.env.PORT || 3000;
 const MAP_NAME = 'default_map';
@@ -60,8 +61,8 @@ class GameServer {
     this.startSyncIntervals();
 
     httpServer.listen(PORT, () => {
-      console.log(`🚀 Alien Shooter Server running on port ${PORT}`);
-      console.log(`Map: ${MAP_NAME}`);
+      logger.info(`🚀 Alien Shooter Server running on port ${PORT}`);
+      logger.info(`Map: ${MAP_NAME}`);
     });
   }
 
@@ -70,7 +71,7 @@ class GameServer {
    */
   private setupEventHandlers(): void {
     this.io.on('connection', (socket: Socket) => {
-      console.log(`Client connected: ${socket.id}`);
+      logger.debug(`Client connected: ${socket.id}`);
 
       // Handle connection request
       socket.on('connection_request', (data: MpCPacketConnectionRequest) => {
@@ -132,7 +133,7 @@ class GameServer {
       id: playerId,
     });
 
-    console.log(`Player connected: ${player.mpUser.name} (ID: ${playerId})`);
+    logger.info(`Player connected: ${player.mpUser.name} (ID: ${playerId})`);
 
     // Send connection response
     const response: MpSPacketConnectionResponse = {
@@ -203,7 +204,7 @@ class GameServer {
   private handleDisconnect(socket: Socket): void {
     const connectedPlayer = this.players.get(socket.id);
     if (connectedPlayer) {
-      console.log(
+      logger.info(
         `Player disconnected: ${connectedPlayer.player.mpUser.name} (ID: ${connectedPlayer.id})`
       );
       this.players.delete(socket.id);
@@ -284,13 +285,13 @@ const server = new GameServer();
 
 // Handle graceful shutdown
 process.on('SIGINT', () => {
-  console.log('\nShutting down server...');
+  logger.info('\nShutting down server...');
   server.shutdown();
   process.exit(0);
 });
 
 process.on('SIGTERM', () => {
-  console.log('\nShutting down server...');
+  logger.info('\nShutting down server...');
   server.shutdown();
   process.exit(0);
 });

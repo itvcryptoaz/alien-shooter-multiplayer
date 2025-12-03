@@ -1,0 +1,64 @@
+/**
+ * Simple structured logger
+ * Provides consistent logging with timestamps and log levels
+ */
+
+export enum LogLevel {
+  DEBUG = 'DEBUG',
+  INFO = 'INFO',
+  WARN = 'WARN',
+  ERROR = 'ERROR',
+}
+
+class Logger {
+  private minLevel: LogLevel;
+
+  constructor() {
+    // Set minimum log level based on environment
+    this.minLevel = process.env.LOG_LEVEL as LogLevel || 
+                    (process.env.NODE_ENV === 'production' ? LogLevel.INFO : LogLevel.DEBUG);
+  }
+
+  private shouldLog(level: LogLevel): boolean {
+    const levels = [LogLevel.DEBUG, LogLevel.INFO, LogLevel.WARN, LogLevel.ERROR];
+    return levels.indexOf(level) >= levels.indexOf(this.minLevel);
+  }
+
+  private formatMessage(level: LogLevel, message: string, data?: any): string {
+    const timestamp = new Date().toISOString();
+    const baseMsg = `[${timestamp}] [${level}] ${message}`;
+    
+    if (data !== undefined) {
+      return `${baseMsg} ${JSON.stringify(data)}`;
+    }
+    
+    return baseMsg;
+  }
+
+  debug(message: string, data?: any): void {
+    if (this.shouldLog(LogLevel.DEBUG)) {
+      console.log(this.formatMessage(LogLevel.DEBUG, message, data));
+    }
+  }
+
+  info(message: string, data?: any): void {
+    if (this.shouldLog(LogLevel.INFO)) {
+      console.log(this.formatMessage(LogLevel.INFO, message, data));
+    }
+  }
+
+  warn(message: string, data?: any): void {
+    if (this.shouldLog(LogLevel.WARN)) {
+      console.warn(this.formatMessage(LogLevel.WARN, message, data));
+    }
+  }
+
+  error(message: string, data?: any): void {
+    if (this.shouldLog(LogLevel.ERROR)) {
+      console.error(this.formatMessage(LogLevel.ERROR, message, data));
+    }
+  }
+}
+
+// Export singleton instance
+export const logger = new Logger();

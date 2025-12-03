@@ -37,7 +37,7 @@ function initGame(playerName: string): void {
       default: 'arcade',
       arcade: {
         gravity: { x: 0, y: 0 }, // Top-down game, no gravity
-        debug: true, // Enable for development
+        debug: process.env.NODE_ENV !== 'production', // Enable debug in development only
       },
     },
     scale: {

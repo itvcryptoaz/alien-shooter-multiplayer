@@ -8,6 +8,9 @@ import Phaser from 'phaser';
 import { NetworkManager } from '../network/NetworkManager';
 import { MpActor, MpSPacketActorSyncItem, MpSPacketUsersSync } from '@alien-shooter-web/shared';
 
+// Constants
+const DIAGONAL_MOVEMENT_FACTOR = Math.SQRT1_2; // 1/√2 ≈ 0.707, normalizes diagonal movement speed
+
 interface RemotePlayer {
   sprite: Phaser.GameObjects.Rectangle;
   nameText: Phaser.GameObjects.Text;
@@ -158,8 +161,8 @@ export class GameScene extends Phaser.Scene {
 
     // Normalize diagonal movement
     if (velocityX !== 0 && velocityY !== 0) {
-      velocityX *= 0.707;
-      velocityY *= 0.707;
+      velocityX *= DIAGONAL_MOVEMENT_FACTOR;
+      velocityY *= DIAGONAL_MOVEMENT_FACTOR;
     }
 
     // Update player position
