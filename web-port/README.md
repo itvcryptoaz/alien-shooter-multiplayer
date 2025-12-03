@@ -18,32 +18,24 @@ web-port/
 
 ## 🚀 Quick Start
 
-### Prerequisites
+**New to the project?** Check out our comprehensive [Getting Started Guide](GETTING_STARTED.md) for detailed setup instructions, troubleshooting, and development tips.
 
-- Node.js >= 18.0.0
-- npm >= 9.0.0
+### TL;DR
 
-### Installation
-
-1. Install all dependencies:
 ```bash
+# 1. Install dependencies
 cd web-port
 npm install
-cd client && npm install
-cd ../server && npm install
-cd ../shared && npm install
+cd shared && npm install && cd ../server && npm install && cd ../client && npm install && cd ..
+
+# 2. Build shared protocol
+cd shared && npm run build && cd ..
+
+# 3. Run in development mode
+npm run dev
 ```
 
-Or use the convenience script:
-```bash
-cd web-port
-npm run install:all
-```
-
-2. Build the shared protocol library:
-```bash
-npm run build:shared
-```
+Open http://localhost:8080 in your browser.
 
 ### Development
 
@@ -52,31 +44,16 @@ Run both client and server in development mode:
 npm run dev
 ```
 
-Or run them separately:
-```bash
-# Terminal 1 - Server
-npm run dev:server
-
-# Terminal 2 - Client
-npm run dev:client
-```
-
 The client will be available at `http://localhost:8080`  
 The server will run on `http://localhost:3000`
 
 ### Production Build
 
-Build all packages:
 ```bash
 npm run build
-```
-
-Start the production server:
-```bash
 npm run start:server
+# Serve client/dist/ with any web server
 ```
-
-Then serve the client from `client/dist/` using any web server.
 
 ## 🎯 Technology Stack
 

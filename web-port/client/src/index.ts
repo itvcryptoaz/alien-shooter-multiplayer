@@ -36,7 +36,7 @@ function initGame(playerName: string): void {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 0 }, // Top-down game, no gravity
+        gravity: { x: 0, y: 0 }, // Top-down game, no gravity
         debug: true, // Enable for development
       },
     },
